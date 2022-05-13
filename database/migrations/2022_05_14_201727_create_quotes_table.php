@@ -29,6 +29,15 @@ return new class extends Migration
             
             $table->unsignedBigInteger('waypay_id');
             $table->foreign("waypay_id")->references("id")->on("way_pay")->onUpdate("cascade")->onDelete("cascade");
+            
+
+            $table->unsignedBigInteger('services_id');
+            $table->foreign("services_id")->references("id")->on("services")->onUpdate("cascade")->onDelete("cascade");
+            
+
+            $table->unsignedBigInteger('customers_id');
+            $table->foreign("customers_id")->references("id")->on("customers")
+            ->onUpdate("cascade")->onDelete("cascade");
             $table->timestamps();
         });
     }

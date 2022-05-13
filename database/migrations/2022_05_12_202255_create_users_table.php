@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('way_pay', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->text('descripcion',250);
+            $table->string('nombre',45);
+            $table->string('password',40);
+            $table->string('descripcion',250);
+            $table->unsignedBigInteger('rol_id');
+            $table->foreign("rol_id")->references("id")->on("roles")
+            ->onUpdate("cascade")->onDelete("cascade");
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('way_pay');
+        Schema::dropIfExists('users');
     }
 };

@@ -13,10 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('way_pay', function (Blueprint $table) {
+        Schema::create('attendance', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->text('descripcion',250);
+            $table->date('fecha');
+            $table->Time('hora_llegada');
+            $table->time('hora_salida');
+            $table->time('horas_trabajadas');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign("users_id")->references("id")->on("employee")
+            ->onUpdate("cascade")->onDelete("cascade");
             $table->timestamps();
         });
     }
@@ -28,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('way_pay');
+        Schema::dropIfExists('attendance');
     }
 };

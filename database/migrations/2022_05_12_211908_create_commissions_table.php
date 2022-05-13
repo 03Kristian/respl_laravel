@@ -13,10 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('way_pay', function (Blueprint $table) {
+        Schema::create('commissions', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->text('descripcion',250);
+            $table->float('comision',9,2);
+            $table->float('sueldo',12,2);
+            $table->float('comision_semanal',14,2);
+
+            $table->string('permiso',120);
+
+
             $table->timestamps();
         });
     }
@@ -28,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('way_pay');
+        Schema::dropIfExists('commissions');
     }
 };
